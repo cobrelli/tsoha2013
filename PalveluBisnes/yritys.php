@@ -13,7 +13,6 @@ include 'sivunYlaOsa.php';
     </p>
 </article>
 
-<footer></footer>
-
-</body>
-</html>
+<?php
+include 'sivunAlaOsa.php';
+?>
