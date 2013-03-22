@@ -14,15 +14,21 @@ body {
     height:100%;
 }
 
+/* footerin laatikoiden sisäinen asettelu */
+.footerText{
+    margin-left: 5%;
+    margin-right: 5%;
+    display: inline-block;
+}
+
+/* footerin yleinen asettelu ja määrittely */
 .footerStyle {
-    /*clear:both;*/
     position:relative;
     bottom:0px;
     height: 40px;
     width: 100%;
     background-color:black;
     color: white;
-    /*padding:5px;*/
     padding-top: 1px;
     text-align: center;
 
@@ -35,6 +41,7 @@ body {
     -webkit-border-top-right-radius: 10px;
 }
 
+/* linkkien asettelu */
 #linkit ul {
     /* fontin koon ym määrittelyä.. */
     font-size: 1.2em;
@@ -89,4 +96,24 @@ body {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+}
+
+fieldset {
+    width:50%
+}
+
+label.kyltti {
+    float:left;
+    text-align: left;
+    width:100px;
+}
+
+input.kentta {
+    float:left;
+    width: 200px;
+}
+
+fieldset p {
+    clear:both;
+    padding:5px;
 }
