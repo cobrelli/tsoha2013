@@ -19,6 +19,7 @@ include 'sivunYlaOsa.php';
             <p><label class="kyltti" for="salasana">Salasana: </label>
             <input class="kentta" type="password" name="Salasana"></p>
         </fieldset>
+        <input type="submit" value="Kirjaudu">
     </form>
 </article>
 
