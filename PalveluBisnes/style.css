@@ -98,6 +98,8 @@ body {
     -webkit-border-radius: 10px;
 }
 
+/* Sisäänkirjautumisen asettelut */
+
 fieldset {
     width:50%
 }
@@ -116,4 +118,22 @@ input.kentta {
 fieldset p {
     clear:both;
     padding:5px;
+}
+
+/* Varaus sivun asettelu */
+
+#varaus_vasen {
+    float:left;
+    width:70%;
+    height:100%;
+    padding:5px;
+    background-color: blue;
+}
+
+#varaus_oikea {
+    float:left;
+    width:30%;
+    height:100%;
+    padding:5px;
+    background-color: red;
 }

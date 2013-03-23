@@ -7,9 +7,13 @@ include 'sivunYlaOsa.php';
 </header>
 
 <article id ="main">
-    <p>
-        Tee tai peru varaus.
-    </p>
+    <div id="varaus_vasen">
+        <p>Tee uusi varaus</p>
+    </div>
+    <div id="varaus_oikea">
+        <p>Peru varauksesi</p>
+    </div>
+    
 </article>
 
 <?php
