@@ -18,3 +18,12 @@ function varmista_kirjautuminen() {
         ohjaa('login.php');
     }
 }
+
+function varmista_kayttajaoikeudet($oikeudet) {
+    global $sessio;
+    if ($sessio->kayttaja_oikeudet == $oikeudet) {
+        
+    } else {
+        ohjaa('index.php');
+    }
+}

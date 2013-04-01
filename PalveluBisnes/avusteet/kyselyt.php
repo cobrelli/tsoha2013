@@ -17,6 +17,24 @@ class Kyselyt {
         }
     }
 
+    public function haeKayttajaNimi($tunnus) {
+        $kysely = $this->valmistele('SELECT nimi FROM kayttajat WHERE tunnus = ?');
+        if ($kysely->execute(array($tunnus))) {
+            return $kysely->fetchObject();
+        } else {
+            return null;
+        }
+    }
+
+    public function haeKayttajatyyppi($tunnus) {
+        $kysely = $this->valmistele('SELECT kayttajatyyppi FROM kayttajat WHERE tunnus = ?');
+        if ($kysely->execute(array($tunnus))) {
+            return $kysely->fetchObject();
+        } else {
+            return null;
+        }
+    }
+
     private function valmistele($sqllause) {
         return $this->_pdo->prepare($sqllause);
     }
