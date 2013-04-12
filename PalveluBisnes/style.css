@@ -145,3 +145,23 @@ fieldset p {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 }
+
+/* Käyttäjä sivun asettelu */
+
+#kayttajasivu_vasen {
+    float:left;
+    width:45%;
+    height:100%;
+    padding:5px;
+    display:inline;
+    /*background-color: yellow;*/
+}
+
+#kayttajasivu_oikea {
+    float:right;
+    width:45%;
+    height:100%;
+    padding:5px;
+    display:inline;
+    /*background-color: blue;*/
+}

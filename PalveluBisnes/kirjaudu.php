@@ -7,7 +7,7 @@ if (isset($_GET['sisaan'])) {
     if ($kayttaja) {
         $sessio->kayttaja_id = $kayttaja->tunnus;
 
-        /* tallennetaan samalle myös käyttäjän nimi ylös */
+        /* tallennetaan samalla myös käyttäjän nimi ylös */
         $kayttis = $kyselija->haeKayttajaNimi($sessio->kayttaja_id);
         $sessio->kayttaja_nimi = $kayttis->nimi;
 
