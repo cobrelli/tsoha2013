@@ -18,10 +18,7 @@ include 'sivunYlaOsa.php';
         if ($k->kayttajatyyppi == "kayttaja") {
 
             $k_palvelut = $kyselija->haePalvelut($k->tunnus);
-
             echo '<h3>' . $k->nimi . '</h3>';
-//            echo '<table border>';
-//            echo '<tr><td>Palvelu</td><td>toimipiste</td><td>hinta</td><td>kuvaus</td>';
 
             foreach ($k_palvelut as $p) {
                 $toimipiste = $kyselija->haeToimipisteenNimi($p->toimipiste_id);
@@ -31,15 +28,8 @@ include 'sivunYlaOsa.php';
                 echo '<p>' . $p->kuvaus . '</p>';
                 echo '<p> Palvelun sijainti: ' . $toimipiste->nimi;
                 echo '<p>' . $p->hinta . ' euroa</p>';
-//                echo '<tr>';
-//                echo '<td>' . $p->palvelu_id . '</td>';
-//                echo '<td>' . $p->toimipiste_id . '</td>';
-//                echo '<td>' . $p->hinta . '</td>';
-//                echo '<td>' . $p->kuvaus . '</td>';
-//                echo '</tr>';
                 echo '</div>';
             }
-//            echo '</table>';
         }
     }
     ?>
