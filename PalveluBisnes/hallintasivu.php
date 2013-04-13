@@ -9,8 +9,12 @@ varmista_kayttajaoikeudet(admin);
 </header>
 
 <article id ="main">
-    <p>Hallintasivu</p>
-
+    <div id="kayttajasivu_vasen">
+        <p>Kaikki palvelut palveluntarjoajittain:</p>
+    </div>
+    <div id="kayttajasivu_oikea">
+        <p>Kaikki tämänhetkiset varaukset:</p>
+    </div>
 </article>
 
 <?php
