@@ -26,6 +26,15 @@ class Kyselyt {
         }
     }
 
+    public function haeToimipisteenNimi($toimipiste_id) {
+        $kysely = $this->valmistele('SELECT nimi FROM paikat WHERE toimipiste_id = ?');
+        if ($kysely->execute(array($toimipiste_id))) {
+            return $kysely->fetchObject();
+        } else {
+            return null;
+        }
+    }
+
     public function haeKayttajatyyppi($tunnus) {
         $kysely = $this->valmistele('SELECT kayttajatyyppi FROM kayttajat WHERE tunnus = ?');
         if ($kysely->execute(array($tunnus))) {
@@ -47,7 +56,7 @@ class Kyselyt {
             return null;
         }
     }
-    
+
     public function haePalvelut($tunnus) {
         $kysely = $this->valmistele('SELECT * FROM palvelut WHERE palvelija_id = ?');
         if ($kysely->execute(array($tunnus))) {

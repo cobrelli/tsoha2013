@@ -24,9 +24,12 @@ include 'sivunYlaOsa.php';
 //            echo '<tr><td>Palvelu</td><td>toimipiste</td><td>hinta</td><td>kuvaus</td>';
 
             foreach ($k_palvelut as $p) {
+                $toimipiste = $kyselija->haeToimipisteenNimi($p->toimipiste_id);
+                
                 echo '<div id="palveluiden_asettelu"';
                 echo '<p><b>' . $p->palvelu_id . '</b></p>';
                 echo '<p>' . $p->kuvaus . '</p>';
+                echo '<p> Palvelun sijainti: ' . $toimipiste->nimi;
                 echo '<p>' . $p->hinta . ' euroa</p>';
 //                echo '<tr>';
 //                echo '<td>' . $p->palvelu_id . '</td>';
