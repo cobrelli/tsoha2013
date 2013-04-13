@@ -12,30 +12,65 @@ include 'sivunYlaOsa.php';
 
         <form>
             <fieldset>
-                <p><label class="kyltti" for="etunimi">Etunimi: </label>
-                    <input type="text" name="Etunimi" class="kentta">
-                </p>
-                <p><label class="kyltti" for="Sukunimi">Sukunimi: </label>
-                    <input type="text" name="Sukunimi" class="kentta">
-                </p>
                 <p><label class="kyltti" for="asiakaspalvelija">Asiakaspalvelija: </label></p>
-                <select>
-                    <option value="1">palvelija 1</options>
-                    <option value="2">palvelija 2</options>
-                    <option value="3">palvelija 3</options>
-                </select>
-                <p><label class="kyltti" for="toimipiste">Toimipiste: </label></p>
-                <select>
-                    <option value="1">paikka 1</options>
-                    <option value="2">paikka 2</options>
-                    <option value="3">paikka 3</options>
+                <select name="palvelija" onchange="this.form.submit()">
+                    <option value="0">Valitse palveluntarjoaja</option>
+                    <?php
+                    $palvelijat = $kyselija->haeKayttajat();
+                    foreach ($palvelijat as $k) {
+                        if ($k->kayttajatyyppi == "kayttaja") {
+                            echo '<option value="';
+                            echo $k->tunnus;
+
+                            echo '"';
+                            if (isset($_GET['palvelija']) && $_GET['palvelija'] == $k->tunnus) {
+                                echo 'selected';
+                            }
+                            echo '>';
+                            echo $k->nimi;
+                            echo '</options>';
+                        }
+                    }
+                    ?>   
                 </select>
 
                 <p><label class="kyltti" for="palvelu">Palvelu: </label></p> 
-                <select>
-                    <option value="1">palvelu 1</options>
-                    <option value="2">palvelu 2</options>
-                    <option value="3">palvelu 3</options>
+                <select  name="palvelu" onchange="this.form.submit()">
+                    <option value="0">Valitse palvelu</option>
+                    <?php
+                    if (isset($_GET['palvelija'])) {
+                        $palvelut = $kyselija->haePalvelutVaraukseen($_GET['palvelija']);
+                        foreach ($palvelut as $p) {
+                            echo '<option value="';
+                            echo $p->palvelu_id;
+                            echo '"';
+                            if($_GET['palvelu'] == $p->palvelu_id){
+                                echo 'selected';
+                            }
+                            echo '>';
+                            
+                            echo $p->palvelu_id;
+                            echo '</options>';
+                        }
+                    }
+                    ?>
+                </select>
+
+                <p><label class="kyltti" for="toimipiste">Toimipiste: </label></p>
+                <select name="paikka">
+                    <option value="0">Valitse toimipiste</option>
+                    <?php
+                    if (isset($_GET['palvelu'])) {
+                        $paikat = $kyselija->haeToimipisteet();
+                        foreach ($paikat as $paikka) {
+                            echo '<option value="';
+                            echo $paikka->toimipiste_id;
+                            echo '">';
+                            echo $paikka->nimi;
+                            echo '</options>';
+                        }
+                    }
+                    ?> 
                 </select>
 
                 <p><label class="kyltti" for="pvm">Päivämäärä: </label>
