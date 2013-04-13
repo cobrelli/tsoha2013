@@ -35,6 +35,19 @@ class Kyselyt {
         }
     }
 
+    public function haeKayttajat() {
+        $kysely = $this->valmistele('SELECT * FROM kayttajat');
+        if ($kysely->execute(array())) {
+            $alkiot = array();
+            while ($alkio = $kysely->fetchObject()) {
+                $alkiot[] = $alkio;
+            }
+            return $alkiot;
+        } else {
+            return null;
+        }
+    }
+    
     public function haePalvelut($tunnus) {
         $kysely = $this->valmistele('SELECT * FROM palvelut WHERE palvelija_id = ?');
         if ($kysely->execute(array($tunnus))) {
