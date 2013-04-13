@@ -23,6 +23,8 @@ varmista_kayttajaoikeudet($kayttaja = "kayttaja");
             echo '<td>' . $palvelu->toimipiste_id . '</td>';
             echo '<td>' . $palvelu->hinta . '</td>';
             echo '<td>' . $palvelu->kuvaus . '</td>';
+            echo '<td> <a href="poistalistalta.php?palvelu=' . $palvelu->id;
+            echo '">[Poista]</a></td>';
             echo '</tr>';
         }
         echo '</table>';

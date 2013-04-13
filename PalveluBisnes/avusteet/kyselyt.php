@@ -69,6 +69,12 @@ class Kyselyt {
         $kysely->execute(array($palvelu, $tunnus, $paikka, $hinta, $kuvaus));
     }
 
+    public function poistalistalta($tunnus, $palvelu) {
+        $kysely = $this->valmistele('delete from palvelut where palvelija_id=? and id=?');
+
+        $kysely->execute(array($tunnus, $palvelu));
+    }
+
     private function valmistele($sqllause) {
         return $this->_pdo->prepare($sqllause);
     }
