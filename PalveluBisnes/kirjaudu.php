@@ -2,6 +2,8 @@
 
 require_once 'avusteet.php';
 
+//varmista_kirjautuminen();
+
 if (isset($_GET['sisaan'])) {
     $kayttaja = $kyselija->tunnista($_POST['tunnus'], $_POST['salasana']);
     if ($kayttaja) {

@@ -14,8 +14,6 @@ varmista_kayttajaoikeudet($kayttaja = "kayttaja");
     <div id="kayttajasivu_vasen">
         <p>Tarjoamasi palvelut</p>
         <?php
-//        echo "<table border>";
-//        echo $sessio->kayttaja_id;
         $palvelut = $kyselija->haePalvelut($sessio->kayttaja_id);
         echo '<table border>';
         echo '<tr><td>Palvelu</td><td>toimipiste</td><td>hinta</td><td>kuvaus</td>';
@@ -34,6 +32,36 @@ varmista_kayttajaoikeudet($kayttaja = "kayttaja");
 
     <div id="kayttajasivu_oikea">
         <p>Lisää uusi palvelu:</p>
+
+        <form action="lisaaPalvelu.php" method="POST">
+            <fieldset style="width: 100%">
+                <p><label class="kyltti" for="palvelu">Palvelutunnus: </label>
+                    <input type="text" name="palvelu" class="kentta">
+                </p>
+                <p><label class="kyltti" for="toimipiste">Toimipiste: </label></p>
+                <select name="paikka">
+                    <?php
+                    $paikat = $kyselija->haeToimipisteet();
+                    foreach ($paikat as $paikka) {
+                        echo '<option value="';
+                        echo $paikka->toimipiste_id;
+                        echo '">';
+                        echo $paikka->nimi;
+                        echo '</options>';
+                    }
+                    ?>    
+
+                </select>
+                <p><label class="kyltti" for="hinta">Hinta: </label>
+                    <input type="text" name="hinta" class="kentta">
+                </p>
+                <p><label class="kyltti" for="kuvaus">Palvelun kuvaus: </label>
+                    <input type="text" name="kuvaus" class="kentta">
+                </p>
+
+            </fieldset>
+            <input type="submit" value="Lisää">
+        </form>
     </div>
 
 </article>

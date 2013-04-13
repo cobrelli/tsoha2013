@@ -48,6 +48,27 @@ class Kyselyt {
         }
     }
 
+    public function haeToimipisteet() {
+        $kysely = $this->valmistele('SELECT * FROM paikat');
+        if ($kysely->execute(array())) {
+            $alkiot = array();
+            while ($alkio = $kysely->fetchObject()) {
+                $alkiot[] = $alkio;
+            }
+            return $alkiot;
+        } else {
+            return null;
+        }
+    }
+
+    public function lisaaPalvelu($palvelu, $tunnus, $paikka, $hinta, $kuvaus) {
+        $kysely = $this->valmistele('insert into palvelut (palvelu_id, palvelija_id, 
+            toimipiste_id, hinta, kuvaus) values (?, (select tunnus from kayttajat where tunnus = ?), 
+            (select toimipiste_id from paikat where toimipiste_id = ?), ?, ?)');
+
+        $kysely->execute(array($palvelu, $tunnus, $paikka, $hinta, $kuvaus));
+    }
+
     private function valmistele($sqllause) {
         return $this->_pdo->prepare($sqllause);
     }
