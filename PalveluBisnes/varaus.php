@@ -57,7 +57,7 @@ include 'sivunYlaOsa.php';
                 </select>
 
                 <p><label class="kyltti" for="toimipiste">Toimipiste: </label></p>
-                <select name="paikka">
+                <select name="paikka" onchange="this.form.submit()">
                     <option value="0">Valitse toimipiste</option>
                     <?php
                     if (isset($_GET['palvelu'])) {
@@ -87,14 +87,27 @@ include 'sivunYlaOsa.php';
                     if (isset($_GET['pvm'])) {
                         $pvm = $_GET['pvm'];
                     }
-                    echo $pvm . '" min="' . $curDate;
-                    echo '">';
+                    echo $pvm . '" min="' . $curDate . '"';
+                    if (!isset($_GET['paikka']) || $_GET['paikka'] == "0") {
+                        echo 'disabled';
+                    }
+                    echo '>';
                     ?>
                 </p>
                 klo
-                <select>
-                    <option value="8">8.00</options>
-                    <option value="9">9.00</options>
+                <select name="klo">
+                    <option value="0">Valitse aika</option>
+                    <?php
+                    if (isset($_GET['paikka'])) {
+                        for ($i = 8; $i <= 18; $i++) {
+                            echo '<option value="' . $i . '"';
+                            if ($_GET['klo'] == $i) {
+                                echo 'selected';
+                            }
+                            echo '>' . $i . '.00</options>';
+                        }
+                    }
+                    ?>
                 </select>
 
             </fieldset>
