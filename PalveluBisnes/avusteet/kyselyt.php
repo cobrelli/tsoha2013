@@ -70,6 +70,19 @@ class Kyselyt {
         }
     }
 
+    public function haeToimipisteetPalvelunJaTekijanPerusteella($palvelija_id, $palvelu_id){
+        $kysely = $this->valmistele('SELECT toimipiste_id FROM palvelut WHERE palvelija_id = ? and palvelu_id = ?');
+        if ($kysely->execute(array($palvelija_id, $palvelu_id))) {
+            $alkiot = array();
+            while ($alkio = $kysely->fetchObject()) {
+                $alkiot[] = $alkio;
+            }
+            return $alkiot;
+        } else {
+            return null;
+        }
+    }
+    
     public function haePalvelutVaraukseen($tunnus) {
         $kysely = $this->valmistele('SELECT DISTINCT palvelu_id FROM palvelut WHERE palvelija_id = ?');
         if ($kysely->execute(array($tunnus))) {

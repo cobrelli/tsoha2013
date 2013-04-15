@@ -44,11 +44,11 @@ include 'sivunYlaOsa.php';
                             echo '<option value="';
                             echo $p->palvelu_id;
                             echo '"';
-                            if($_GET['palvelu'] == $p->palvelu_id){
+                            if ($_GET['palvelu'] == $p->palvelu_id) {
                                 echo 'selected';
                             }
                             echo '>';
-                            
+
                             echo $p->palvelu_id;
                             echo '</options>';
                         }
@@ -61,12 +61,18 @@ include 'sivunYlaOsa.php';
                     <option value="0">Valitse toimipiste</option>
                     <?php
                     if (isset($_GET['palvelu'])) {
-                        $paikat = $kyselija->haeToimipisteet();
+                        $paikat = $kyselija->haeToimipisteetPalvelunJaTekijanPerusteella($_GET['palvelija'], $_GET['palvelu']);
                         foreach ($paikat as $paikka) {
                             echo '<option value="';
                             echo $paikka->toimipiste_id;
-                            echo '">';
-                            echo $paikka->nimi;
+                            echo '"';
+                            if ($_GET['paikka'] == $paikka->toimipiste_id) {
+                                echo 'selected';
+                            }
+                            echo '>';
+                            $paikan_nimi = $kyselija->haeToimipisteenNimi($paikka->toimipiste_id);
+//                            echo $paikka->toimipiste_id;
+                            echo $paikan_nimi->nimi;
                             echo '</options>';
                         }
                     }
@@ -74,7 +80,16 @@ include 'sivunYlaOsa.php';
                 </select>
 
                 <p><label class="kyltti" for="pvm">Päivämäärä: </label>
-                    <input type="date" name="pvm">
+                    <?php
+                    $pvm = date('Y-m-d');
+                    $curDate = date('Y-m-d');
+                    echo '<input type="date" name="pvm" value="';
+                    if (isset($_GET['pvm'])) {
+                        $pvm = $_GET['pvm'];
+                    }
+                    echo $pvm . '" min="' . $curDate;
+                    echo '">';
+                    ?>
                 </p>
                 klo
                 <select>
