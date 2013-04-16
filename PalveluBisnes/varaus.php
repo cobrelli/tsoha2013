@@ -10,7 +10,7 @@ include 'sivunYlaOsa.php';
     <div id="varaus_vasen">
         <h3>Tee uusi varaus</h3>
 
-        <form>
+        <form id="varaus">
             <fieldset>
                 <p><label class="kyltti" for="asiakaspalvelija">Asiakaspalvelija: </label></p>
                 <select name="palvelija" onchange="this.form.submit()">
@@ -94,25 +94,43 @@ include 'sivunYlaOsa.php';
                     echo '>';
                     ?>
                 </p>
-                klo
-                <select name="klo">
-                    <option value="0">Valitse aika</option>
-                    <?php
-                    if (isset($_GET['paikka'])) {
-                        for ($i = 8; $i <= 18; $i++) {
-                            echo '<option value="' . $i . '"';
-                            if ($_GET['klo'] == $i) {
-                                echo 'selected';
-                            }
-                            echo '>' . $i . '.00</options>';
-                        }
-                    }
-                    ?>
-                </select>
+                <!--                klo
+                                <select name="klo">
+                                    <option value="0">Valitse aika</option>
+                <?php
+//                    if (isset($_GET['paikka'])) {
+//                        for ($i = 8; $i <= 18; $i++) {
+//                            echo '<option value="' . $i . '"';
+//                            if ($_GET['klo'] == $i) {
+//                                echo 'selected';
+//                            }
+//                            echo '>' . $i . '.00</options>';
+//                        }
+//                    }
+                ?>
+                                </select>-->
 
             </fieldset>
-            <input type="submit" value="Lähetä">
         </form>
+        <?php
+        echo '<button form="varaus" formmethod="GET" formaction="varaus.php"';
+        if (!isset($_GET['paikka']) || $_GET['paikka'] == "0") {
+            echo ' disabled';
+        }
+        echo '>Tarkista vapaat ajat</button>';
+        ?>
+
+        <br>
+        <?php
+        if (isset($_GET['pvm']) && $_GET['paikka'] != '0' && $_GET['palvelu'] != '0' && $_GET['palvelija'] != '0') {
+            echo '<br><form>';
+            echo '<select>';
+            echo '<option value="0">Valitse vapaa aika</option>';
+            echo '</select>';
+            echo '<input type="submit" value="varaa aika">';
+            echo '</form>';
+        }
+        ?>
     </div>
 
     <div id="varaus_oikea">
