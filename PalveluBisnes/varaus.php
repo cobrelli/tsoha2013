@@ -71,7 +71,6 @@ include 'sivunYlaOsa.php';
                             }
                             echo '>';
                             $paikan_nimi = $kyselija->haeToimipisteenNimi($paikka->toimipiste_id);
-//                            echo $paikka->toimipiste_id;
                             echo $paikan_nimi->nimi;
                             echo '</options>';
                         }
@@ -94,22 +93,7 @@ include 'sivunYlaOsa.php';
                     echo '>';
                     ?>
                 </p>
-                <!--                klo
-                                <select name="klo">
-                                    <option value="0">Valitse aika</option>
-                <?php
-//                    if (isset($_GET['paikka'])) {
-//                        for ($i = 8; $i <= 18; $i++) {
-//                            echo '<option value="' . $i . '"';
-//                            if ($_GET['klo'] == $i) {
-//                                echo 'selected';
-//                            }
-//                            echo '>' . $i . '.00</options>';
-//                        }
-//                    }
-                ?>
-                                </select>-->
-
+ 
             </fieldset>
         </form>
         <?php
@@ -126,6 +110,23 @@ include 'sivunYlaOsa.php';
             echo '<br><form>';
             echo '<select>';
             echo '<option value="0">Valitse vapaa aika</option>';
+
+            for ($i = 8; $i <= 17; $i++) {
+                $klo = '';
+                $klo = $i . ':00';
+
+                $tarkasta_paikka = $kyselija->tarkistaEtteiAnnettunaAikanaPaikassaVarausta($klo, $_GET['pvm'], $_GET['paikka']);
+                $tarkasta_palvelija = $kyselija->tarkistaEtteiAnnettunaAikanaPalvelijallaVarausta($klo, $_GET['pvm'], $_GET['palvelija']);
+
+                if (!$tarkasta_palvelija && !$tarkasta_paikka) {
+                    echo '<option value="' . $klo . '"';
+                    if ($_GET['klo'] == $klo) {
+                        echo 'selected';
+                    }
+                    echo '>' . $klo . '</options>';
+                }
+            }
+
             echo '</select>';
             echo '<input type="submit" value="varaa aika">';
             echo '</form>';

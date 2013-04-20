@@ -70,7 +70,7 @@ class Kyselyt {
         }
     }
 
-    public function haeToimipisteetPalvelunJaTekijanPerusteella($palvelija_id, $palvelu_id){
+    public function haeToimipisteetPalvelunJaTekijanPerusteella($palvelija_id, $palvelu_id) {
         $kysely = $this->valmistele('SELECT toimipiste_id FROM palvelut WHERE palvelija_id = ? and palvelu_id = ?');
         if ($kysely->execute(array($palvelija_id, $palvelu_id))) {
             $alkiot = array();
@@ -82,7 +82,7 @@ class Kyselyt {
             return null;
         }
     }
-    
+
     public function haePalvelutVaraukseen($tunnus) {
         $kysely = $this->valmistele('SELECT DISTINCT palvelu_id FROM palvelut WHERE palvelija_id = ?');
         if ($kysely->execute(array($tunnus))) {
@@ -95,7 +95,7 @@ class Kyselyt {
             return null;
         }
     }
-    
+
     public function haeToimipisteet() {
         $kysely = $this->valmistele('SELECT * FROM paikat');
         if ($kysely->execute(array())) {
@@ -121,6 +121,21 @@ class Kyselyt {
         $kysely = $this->valmistele('delete from palvelut where palvelija_id=? and id=?');
 
         $kysely->execute(array($tunnus, $palvelu));
+    }
+
+    public function tarkistaEtteiAnnettunaAikanaPaikassaVarausta($klo, $pvm, $toimipiste_id) {
+        $kysely = $this->valmistele('select * from varaukset, palvelut where klo=? and pvm=? and varaukset.palvelu_id = palvelut.id and palvelut.toimipiste_id=?');
+        if ($kysely->execute(array($klo, $pvm, $toimipiste_id))) {
+            return $kysely->fetchObject()->count > 0;
+        }
+    }
+
+    public function tarkistaEtteiAnnettunaAikanaPalvelijallaVarausta($klo, $pvm, $tunnus) {
+        $kysely = $this->valmistele('select count(*) from varaukset, palvelut where klo=? and pvm=? and varaukset.palvelu_id = palvelut.id and palvelut.palvelija_id=?');
+        if ($kysely->execute(array($klo, $pvm, $tunnus))) {
+            return $kysely->fetchObject()->count > 0;
+        }
+        return false;
     }
 
     private function valmistele($sqllause) {
