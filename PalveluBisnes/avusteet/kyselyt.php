@@ -138,6 +138,14 @@ class Kyselyt {
         return false;
     }
 
+    public function teeVaraus($varausnumero, $palvelu_id, $palvelija_id, $toimipiste_id, $pvm, $klo) {
+        $kysely = $this->valmistele('insert into varaukset (varausnumero, palvelu_id, pvm, klo) values (?, (select id from palvelut where palvelu_id=? and palvelija_id=? and toimipiste_id=?), ?, ?)');
+        $kysely->execute(array($varausnumero, $palvelu_id, $palvelija_id, $toimipiste_id, $pvm, $klo));
+    }
+    
+    
+
+    
     private function valmistele($sqllause) {
         return $this->_pdo->prepare($sqllause);
     }
