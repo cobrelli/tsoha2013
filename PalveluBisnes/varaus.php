@@ -131,7 +131,7 @@ include 'sivunYlaOsa.php';
         </form>
         <?php
         if (isset($_GET['pvm']) && $_GET['paikka'] != '0' && $_GET['palvelu'] != '0' && $_GET['palvelija'] != '0') {
-            echo '<button form="varaus" formmethod="POST" formaction="varaa.php"';
+            echo '<button form="varaus" formmethod="POST" formaction="varaa.php?lisaa"';
             echo '>Varaa aika</button>';
         } else {
             echo '<button form="varaus" formmethod="GET" formaction="varaus.php"';
@@ -148,10 +148,16 @@ include 'sivunYlaOsa.php';
     <div id="varaus_oikea">
         <h3>Peru varauksesi</h3>
 
-        <form>
+        <form action="varaa.php?poista" method="POST">
             Varausnumero: <input type="text" name="varausnumero"><br>
             <input type="submit" value="Peru">
         </form>
+
+        <?php
+        if (isset($_GET['poistettu'])) {
+            echo 'Varauksesi on nyt poistettu';
+        }
+        ?>
     </div>
 
 </article>

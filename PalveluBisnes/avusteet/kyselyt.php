@@ -142,10 +142,12 @@ class Kyselyt {
         $kysely = $this->valmistele('insert into varaukset (varausnumero, palvelu_id, pvm, klo) values (?, (select id from palvelut where palvelu_id=? and palvelija_id=? and toimipiste_id=?), ?, ?)');
         $kysely->execute(array($varausnumero, $palvelu_id, $palvelija_id, $toimipiste_id, $pvm, $klo));
     }
-    
-    
 
-    
+    public function poistaVaraus($varausnumero) {
+        $kysely = $this->valmistele('delete from varaukset where varausnumero=?');
+        $kysely->execute(array($varausnumero));
+    }
+
     private function valmistele($sqllause) {
         return $this->_pdo->prepare($sqllause);
     }
