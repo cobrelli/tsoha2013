@@ -124,7 +124,7 @@ class Kyselyt {
     }
 
     public function tarkistaEtteiAnnettunaAikanaPaikassaVarausta($klo, $pvm, $toimipiste_id) {
-        $kysely = $this->valmistele('select * from varaukset, palvelut where klo=? and pvm=? and varaukset.palvelu_id = palvelut.id and palvelut.toimipiste_id=?');
+        $kysely = $this->valmistele('select count(*) from varaukset, palvelut where klo=? and pvm=? and varaukset.palvelu_id = palvelut.id and palvelut.toimipiste_id=?');
         if ($kysely->execute(array($klo, $pvm, $toimipiste_id))) {
             return $kysely->fetchObject()->count > 0;
         }
@@ -146,6 +146,19 @@ class Kyselyt {
     public function poistaVaraus($varausnumero) {
         $kysely = $this->valmistele('delete from varaukset where varausnumero=?');
         $kysely->execute(array($varausnumero));
+    }
+
+    public function haeVarauksetNimella($tunnus) {
+        $kysely = $this->valmistele('select palvelut.palvelu_id, palvelut.toimipiste_id, pvm, klo  from varaukset, palvelut where palvelija_id=? and varaukset.palvelu_id = palvelut.id');
+        if ($kysely->execute(array($tunnus))) {
+            $alkiot = array();
+            while ($alkio = $kysely->fetchObject()) {
+                $alkiot[] = $alkio;
+            }
+            return $alkiot;
+        } else {
+            return null;
+        }
     }
 
     private function valmistele($sqllause) {
