@@ -1,6 +1,6 @@
 
 <?php
-include 'sivunYlaOsa.php';
+include 'avusteet/sivunYlaOsa.php';
 //include 'linkit.php';
 ?>
 
@@ -14,5 +14,5 @@ include 'sivunYlaOsa.php';
 </article>
 
 <?php
-include 'sivunAlaOsa.php';
+include 'avusteet/sivunAlaOsa.php';
 ?>

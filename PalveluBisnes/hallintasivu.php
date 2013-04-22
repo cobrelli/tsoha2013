@@ -1,5 +1,5 @@
 <?php
-include 'sivunYlaOsa.php';
+include 'avusteet/sivunYlaOsa.php';
 varmista_kirjautuminen();
 varmista_kayttajaoikeudet(admin);
 ?>
@@ -66,5 +66,5 @@ varmista_kayttajaoikeudet(admin);
 </article>
 
 <?php
-include 'sivunAlaOsa.php';
+include 'avusteet/sivunAlaOsa.php';
 ?>

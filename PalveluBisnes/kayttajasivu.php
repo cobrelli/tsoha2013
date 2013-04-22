@@ -1,7 +1,7 @@
 
 
 <?php
-include 'sivunYlaOsa.php';
+include 'avusteet/sivunYlaOsa.php';
 varmista_kirjautuminen();
 varmista_kayttajaoikeudet($kayttaja = "kayttaja");
 ?>
@@ -88,5 +88,5 @@ varmista_kayttajaoikeudet($kayttaja = "kayttaja");
 </article>
 
 <?php
-include 'sivunAlaOsa.php';
+include 'avusteet/sivunAlaOsa.php';
 ?>

@@ -1,7 +1,7 @@
 
 
 <?php
-include 'sivunYlaOsa.php';
+include 'avusteet/sivunYlaOsa.php';
 ?>
 
 <h1>Tervetuloa Kinkkisen palveluihin</h1>
@@ -13,5 +13,5 @@ include 'sivunYlaOsa.php';
 </article>
 
 <?php
-include 'sivunAlaOsa.php';
+include 'avusteet/sivunAlaOsa.php';
 ?>
