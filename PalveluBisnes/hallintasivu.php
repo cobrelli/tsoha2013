@@ -37,6 +37,31 @@ varmista_kayttajaoikeudet(admin);
     </div>
     <div id="kayttajasivu_oikea">
         <h3>Kaikki tämänhetkiset varaukset:</h3>
+
+        <?php
+//        $kaikki_kayttajat = $kyselija->haeKayttajat();
+        foreach ($kaikki_kayttajat as $k) {
+            if ($k->kayttajatyyppi == "kayttaja") {
+                $k_varaukset = $kyselija->haeVarauksetNimella($k->tunnus);
+
+                echo '<p>' . $k->nimi . '</p>';
+                echo '<table border>';
+                echo '<tr><td>Palvelu</td><td>toimipiste</td><td>pvm</td><td>klo</td>';
+
+                foreach ($k_varaukset as $v) {
+                    if ($v->pvm >= date('Y-m-d')) {
+                        echo '<tr>';
+                        echo '<td>' . $v->palvelu_id . '</td>';
+                        echo '<td>' . $v->toimipiste_id . '</td>';
+                        echo '<td>' . $v->pvm . '</td>';
+                        echo '<td>' . $v->klo . '</td>';
+                        echo '</tr>';
+                    }
+                }
+                echo '</table>';
+            }
+        }
+        ?>
     </div>
 </article>
 
