@@ -8,7 +8,7 @@ include 'avusteet/sivunYlaOsa.php';
 </header>
 
 <article id ="main">
-    <p>Tietoa Kinkkisen Palveluyrityksen palveluista</p>
+    <p>Kinkkisen palveluyritys tarjoaa palveluita pääkaupunkiseudulla.</p>
 
 </article>
 

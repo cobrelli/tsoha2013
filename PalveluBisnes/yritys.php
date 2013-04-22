@@ -9,7 +9,8 @@ include 'avusteet/sivunYlaOsa.php';
 
 <article id ="main">
     <p>
-        Tietoa Kinkkisen palveluista
+        Tietoa Kinkkisen palveluyrityksestä. Tarkemmin tietoa yksittäisistä 
+        palveluista löytyy palvelu -sivulta.
     </p>
 </article>
 
