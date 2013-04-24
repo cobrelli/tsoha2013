@@ -17,8 +17,11 @@ if (isset($_GET['lisaa'])) {
         ohjaa('varaus.php');
     }
 } else if (isset($_GET['poista'])) {
-    $kyselija->poistaVaraus($_POST['varausnumero']);
-    ohjaa('varaus.php?poistettu');
+    if ($kyselija->poistaVaraus($_POST['varausnumero']) === true) {
+        ohjaa('varaus.php?poistettu');
+    } else {
+        ohjaa('varaus.php?eipoistettu');
+    }
 }
 
 function valitutPalvelutEivatTyhjia($palvelu, $palvelija, $paikka, $pvm, $aika) {
@@ -27,4 +30,5 @@ function valitutPalvelutEivatTyhjia($palvelu, $palvelija, $paikka, $pvm, $aika) 
     }
     return true;
 }
+
 ?>

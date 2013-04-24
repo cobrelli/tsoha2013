@@ -146,6 +146,7 @@ class Kyselyt {
     public function poistaVaraus($varausnumero) {
         $kysely = $this->valmistele('delete from varaukset where varausnumero=?');
         $kysely->execute(array($varausnumero));
+        return $kysely->fetchObject() > 0;
     }
 
     public function haeVarauksetNimella($tunnus) {

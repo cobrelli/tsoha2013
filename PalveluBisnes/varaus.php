@@ -156,6 +156,8 @@ include 'avusteet/sivunYlaOsa.php';
         <?php
         if (isset($_GET['poistettu'])) {
             echo 'Varauksesi on nyt poistettu';
+        } else if(isset($_GET['eipoistettu'])){
+            echo 'Valitettavasti varausnumerolla ei löytynyt varausta';
         }
         ?>
     </div>
