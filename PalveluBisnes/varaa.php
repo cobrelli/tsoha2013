@@ -1,6 +1,6 @@
 <?php
 
-require_once 'avusteet.php';
+require_once 'avusteet/avusteet.php';
 if (isset($_GET['lisaa'])) {
     $tarkasta_paikka = $kyselija->tarkistaEtteiAnnettunaAikanaPaikassaVarausta($klo, $_GET['pvm'], $_GET['paikka']);
     $tarkasta_palvelija = $kyselija->tarkistaEtteiAnnettunaAikanaPalvelijallaVarausta($klo, $_GET['pvm'], $_GET['palvelija']);

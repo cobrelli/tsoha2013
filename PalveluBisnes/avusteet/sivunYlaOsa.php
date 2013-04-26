@@ -12,7 +12,7 @@
                 include 'linkit.php';
 
                 try {
-                    require_once 'avusteet.php';
+                    require_once 'avusteet/avusteet.php';
                 } catch (PDOException $e) {
                     
                 }

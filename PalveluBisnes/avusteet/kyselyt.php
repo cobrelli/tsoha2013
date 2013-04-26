@@ -168,6 +168,6 @@ class Kyselyt {
 
 }
 
-require dirname(__file__) . '/../asetukset.php';
+require dirname(__file__) . '/../avusteet/asetukset.php';
 
 $kyselija = new Kyselyt($pdo);

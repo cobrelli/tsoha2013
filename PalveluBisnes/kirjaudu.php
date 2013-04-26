@@ -1,6 +1,6 @@
 <?php
 
-require_once 'avusteet.php';
+require_once 'avusteet/avusteet.php';
 
 //varmista_kirjautuminen();
 
